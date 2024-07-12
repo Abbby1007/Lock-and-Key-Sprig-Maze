@@ -273,124 +273,40 @@ y.k..j.b
 ..w..w..
 p.wogwl.`, 
   map `
-p........
+..w..p...
 o.wwwwwcw
-wcwj....y
+wjw.....y
 ..w.w....
 ..w...www
-.ww...v..
-.b.wwwwkw
+.ww...k..
+.b.wwww.w
 vwwww...g
 ........l`, 
   map `
-....p....
-.wwwwwww.
-...w...w.
-wwww.w...
-.....w...
-..wwwwww.
-.w.....w.
-.w.ww..w.
-...w.g.w.`, 
+..owp.wwww
+w.wwwc.www
+...wy.w..w
+wv.ww..c..
+..w....w..
+..ww.wwww.
+jw..w..w.k
+...v...v..
+b..w...wlg`, 
   map `
-.w.....ww..
-.ww.www..w.
-.......w.w.
-www......ww
-..www.www.w
-p.....w....
-.wwwwww...g
-..w....ww..
-.......w..w
-w.wwww.w..w
-w...w..w.w.
-w...w..w.w.
-www..ww..ww
-...w.......`, 
-  map `
-......p.....w
-..w...w.ww...
-..ww..w.w..ww
-...wwwwwww...
-ww..w.w......
-..w...w..wwww
-wwwww.w......
-....w.ww.w.w.
-.w.....www...
-wwwwww.w.w..w
-.w.....w.w.w.
-....wwww...w.
-w.....w..w.w.
-.w.w..wwww...
-..www.gw.....`, 
-  map `
-.w.p.www..w..w.
-.w.....wwww.ww.
-.......w.......
-.wwww..w.wwww..
-.w.....w.w.....
-.w..wwww.w.w.w.
-.w.......w...w.
-.wwwwwwwwwww.w.
-..w..........w.
-..w.w....www.w.
-..w.wwww...w.w.
-.......ww..www.
-wwww....ww.....
-...www...www...
-........g..w...`, 
-  map `
-wp................
-w.wwwwwwwwwwwwwww.
-w.w.....w.........
-....wwwwwwwwwww.w.
-..........w.....w.
-wwwwwwwww.w.wwwww.
-..........w.w.....
-..wwwwwww.w.w.wwww
-..w...w.w.w...w...
-..ww..w.www...w.w.
-...w....w....ww.w.
-.www..w.w.w.....ww
-...w.w..w.www.....
-.....w..w...wwww..
-..wwww..wwwww..w..
-..w.........w..g..`, 
-  map `
-w...............
-wwwwww..wwwwwww.
-p...........w.ww
-...www......w...
-ww...wwwww..w...
-w..w.w...w.ww..g
-w..www.www...w..
-w...w..w.....w.w
-w.w.w....w...w..
-www.w..w.ww....w
-.w..w..w...ww.w.
-.w..wwwwww....w.
-.ww.....w.ww.ww.
-..ww..www.....w.
-....w.w.w..www..
-....w.......w...`, 
-  map `
-.www......w......
-.w.www....w....w.
-..ww..ww....www.w
-p..w...w...w..w.w
-.....w.w......w..
-wwww.w..w...wwww.
-..........ww.....
-.www.wwww..w..w..
-.w......ww..w.w..
-.w..w.w..wwww.w..
-.wwww.w...ww...ww
-.w...........w...
-.w.....www...w...
-..wwwwww.w..ww..w
-............ww.ww
-.ww.wwww....ww.w.
-www......wwwwwgw.`, 
+g......ww.o
+.wkwwww..w.
+w...w..b.w.
+w.cywww.v.j
+.w.ww.w..ww
+.w.w..w....
+w...wwwww..
+w.cww..wwvw
+ww..w..w..w
+www.ww.w..w
+w....w.w...
+w....w.w...
+wwwcwwwwvww
+p.........l`, 
 
 
 
@@ -458,7 +374,7 @@ level = level + 1;
     if (currentLevel !== undefined) {
       setMap(currentLevel);
     } else {
-      win();
+      addText("you win!", { y: 4, color: color`7` });
     }
 }
 
@@ -474,6 +390,11 @@ getFirst(blueKey).remove();
 }
 
 });
+
+// win (); {
+// addText("you win!", { y: 4, color: color`7` });
+// }
+
 
 
 
