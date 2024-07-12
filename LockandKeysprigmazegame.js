@@ -7,6 +7,7 @@
 
 
 const player = "p"// player
+const player2 = "l"// player
 
 //variables for Keys
 const yellowKey = "y" // yellow key
@@ -20,6 +21,10 @@ const blueLock = "k" // Blue Lock
 
 //varibles for enviroment
 const wall = "w" // concrete wall
+const goal = "g" // goal
+const goal2 = "o" // goal2
+const blueBox = "v" // pushable blue box
+const yellowBox = "c" //pushable yellow box
 
 let number = 0;
 
@@ -77,6 +82,23 @@ setLegend(
 ...6666600066...
 ....66666666....
 ................`], // player
+  [player2, bitmap`
+................
+....55555555....
+...5555555555...
+..555555555555..
+.55500555500555.
+.55500555500555.
+.55500555500555.
+.55500555500555.
+.55555555555555.
+.50055555555555.
+.55005555550055.
+.55500555550555.
+..555500050055..
+...5555500055...
+....55555555....
+................`], // player
   [yellowKey, bitmap`
 ................
 ................
@@ -111,40 +133,6 @@ setLegend(
 ....66611666....
 ....66611666....
 ....66666666....`], // yellow lock
-   [greenLock, bitmap`
-................
-................
-................
-......4444......
-.....444444.....
-....44....44....
-....4......4....
-....4......4....
-....4......4....
-....44444444....
-....44444444....
-....44111144....
-....44111144....
-....44411444....
-....44411444....
-....44444444....`], // green lock
-  [greenKey, bitmap`
-................
-................
-................
-................
-.44444..........
-4444444.........
-4422244444444444
-442224444.4.4.44
-44222444.4.4.4..
-4444444.........
-.44444..........
-................
-................
-................
-................
-................`], // green key
      [blueLock, bitmap`
 ................
 ................
@@ -196,31 +184,104 @@ LLLLLL0111110LL0
 LLLL01111110LLL0
 LLLL01111110LLL0
 0000000000000000`], // concrete wall
+  [goal, bitmap`
+................
+................
+....5...........
+....0606060606..
+....0060606060..
+....0606060606..
+....0060606060..
+....0606060606..
+....00..........
+....00..........
+....00..........
+....00..........
+....00..........
+....00..........
+....00..........
+....00..........`], // goal
+  [goal2, bitmap`
+................
+................
+....6...........
+....0505050505..
+....0050505050..
+....0505050505..
+....0050505050..
+....0505050505..
+....00..........
+....00..........
+....00..........
+....00..........
+....00..........
+....00..........
+....00..........
+....00..........`], // goal2
+  [blueBox, bitmap`
+0000000000000000
+0555555555555550
+0500000000000050
+0505555555555050
+0505000000005050
+0505055555505050
+0505050000505050
+0505050550505050
+0505050550505050
+0505050000505050
+0505055555505050
+0505000000005050
+0505555555555050
+0500000000000050
+0555555555555550
+0000000000000000`], //blue pushable box sprite
+  [yellowBox, bitmap`
+0000000000000000
+0666666666666660
+0600000000000060
+0606666666666060
+0606000000006060
+0606066666606060
+0606060000606060
+0606060660606060
+0606060660606060
+0606060000606060
+0606066666606060
+0606000000006060
+0606666666666060
+0600000000000060
+0666666666666660
+0000000000000000`],
+ // yellow pushable box sprite
 
 )
 
-setSolids([player, wall, yellowKey])
-
+setSolids([player, wall, yellowLock, blueLock,player2, yellowBox, blueBox])
+setPushables({
+ [player]: [yellowBox], 
+  [player2]: [blueBox], 
+  
+})
 let level = 0
 const levels = [
-  map`
-....
-py.j`, // level 1
   map `
-...w...
-.w.w.w.
-.w.w.wg
-pw...ww`, // level 2
+wwwwwwww
+y.k..j.b
+..w..w..
+..w..w..
+..w..w..
+..w..w..
+p.wogwl.`, 
   map `
-.....w...
-..w.pwww.
-www......
-...www...
-.w.....ww
-ww...w...
-...www.ww
-.ww.w....
-...g..ww.`, // level 3
+p........
+o.wwwwwcw
+wcwj....y
+..w.w....
+..w...www
+.ww...v..
+.b.wwwwkw
+vwwww...g
+........l`, 
   map `
 ....p....
 .wwwwwww.
@@ -230,7 +291,7 @@ wwww.w...
 ..wwwwww.
 .w.....w.
 .w.ww..w.
-...w.g.w.`, // level 4
+...w.g.w.`, 
   map `
 .w.....ww..
 .ww.www..w.
@@ -245,7 +306,7 @@ w.wwww.w..w
 w...w..w.w.
 w...w..w.w.
 www..ww..ww
-...w.......`, // level 5
+...w.......`, 
   map `
 ......p.....w
 ..w...w.ww...
@@ -261,7 +322,7 @@ wwwwww.w.w..w
 ....wwww...w.
 w.....w..w.w.
 .w.w..wwww...
-..www.gw.....`, // level 6
+..www.gw.....`, 
   map `
 .w.p.www..w..w.
 .w.....wwww.ww.
@@ -277,7 +338,7 @@ w.....w..w.w.
 .......ww..www.
 wwww....ww.....
 ...www...www...
-........g..w...`, // level 7 
+........g..w...`, 
   map `
 wp................
 w.wwwwwwwwwwwwwww.
@@ -294,7 +355,7 @@ wwwwwwwww.w.wwwww.
 ...w.w..w.www.....
 .....w..w...wwww..
 ..wwww..wwwww..w..
-..w.........w..g..`, // level 8 
+..w.........w..g..`, 
   map `
 w...............
 wwwwww..wwwwwww.
@@ -311,7 +372,7 @@ www.w..w.ww....w
 .ww.....w.ww.ww.
 ..ww..www.....w.
 ....w.w.w..www..
-....w.......w...`, // level 9 
+....w.......w...`, 
   map `
 .www......w......
 .w.www....w....w.
@@ -329,7 +390,7 @@ wwww.w..w...wwww.
 ..wwwwww.w..ww..w
 ............ww.ww
 .ww.wwww....ww.w.
-www......wwwwwgw.`, // level 10 
+www......wwwwwgw.`, 
 
 
 
@@ -338,10 +399,8 @@ www......wwwwwgw.`, // level 10
 setMap(levels[level])
 
 
-setPushables({
-  [player]: [yellowKey, player]
-})
 
+// First Player controls
 onInput("s", () => {
   getFirst(player).y += 1 // move down
 });
@@ -358,32 +417,67 @@ onInput("a", () => {
   getFirst(player).x -= 1 // move left
 });
 
+// Second Players Movement inputs
+
+onInput("k", () => {
+  getFirst(player2).y += 1 // move down
+});
+
+onInput("i", () => {
+  getFirst(player2).y -= 1 // move up
+});
+
+onInput("l", () => {
+  getFirst(player2).x += 1 // move right
+});
+
 onInput("j", () => {
-  setMap(levels[level])
+  getFirst(player2).x -= 1 // move left
 });
 
 
 
 
 
-// these get run after every input
 afterInput(() => {
-  const numberOfGoalsCovered = tilesWith(yellowKey, yellowLock ); // tiles that both contain the player and goal
+  const goalsCovered = tilesWith(player, goal); // tiles that both contain the player and goal
+  const goalsCovered2 = tilesWith(player2, goal2); // tiles that both contain the player2 and goal2
+  const keysTaken = tilesWith(player, yellowKey); // ADDED: all the keys that the player is on
+   const keysTaken2 = tilesWith(player2, blueKey); // ADDED: all the keys that the player is on
 
-  // if at least one goal is overlapping with a player, proceed to the next level
-  if (numberOfGoalsCovered.length >= 1) {
-    // increase the current level number
+// there is one player, so if 1 or more tiles with both a goal and a player, next level
+if ((goalsCovered.length >= 1) && (goalsCovered2.length >= 1)) {
+// increase the current level number
+level = level + 1;
 
-    level = level + 1;
+    const currentLevel = levels[level];
 
-    // check if current level number is valid
-    if (level < levels.length) {
-      setMap(levels[level]);
+    // make sure the level exists and if so set the map
+    // otherwise, we have finished the last level, there is no level
+    // after the last level
+    if (currentLevel !== undefined) {
+      setMap(currentLevel);
     } else {
-      addText("you win!", {
-        y: 6,
-        color: color`6`
-      });
+      win();
     }
-  }
+}
+
+// ADDED: remove the lock and key if the key is picked up
+if (keysTaken.length >= 1) {
+getFirst(yellowLock).remove();
+getFirst(yellowKey).remove();
+}
+
+  if (keysTaken2.length >= 1) {
+getFirst(blueLock).remove();
+getFirst(blueKey).remove();
+}
+
 });
+
+
+
+
+
+           
+  
